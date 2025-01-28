@@ -226,41 +226,14 @@
 
         /* Estilos do contador de aulas */
         .counter {
-            margin-left: 20px;
+            margin-left: 730px;
             padding: 12px 20px;
-            background-color: #e9ecef;
-            border: 1px solid #ccc;
+            background-color: #ffd699;
+            border: 1px solid #cc6600;
             border-radius: 5px;
             font-size: 16px;
             display: inline-block;
         }
-
-    /* Estado normal dos campos */
-    input[type="text"], input[type="tel"], input[type="email"], select {
-        background-color: #f9f9f9; /* Cor de fundo padrão */
-        border: 1px solid #ccc; /* Cor da borda padrão */
-    }
-
-    /* Campo em foco */
-    input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus {
-        background-color: #fff9c4; /* Cor de fundo amarelo claro */
-        border: 1px solid #ffeb3b; /* Borda amarela */
-        outline: none; /* Remove o outline padrão */
-    }
-
-    /* Campos com erro de validação */
-    input:invalid {
-        background-color: #f8d7da; /* Fundo vermelho claro */
-        border: 1px solid #dc3545; /* Borda vermelha */
-    }
-
-    /* Exemplo de campo preenchido corretamente */
-    input:valid {
-        background-color: #d4edda; /* Fundo verde claro */
-        border: 1px solid #28a745; /* Borda verde */
-    }
-
-
 
     </style>
 </head>
@@ -302,33 +275,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                        <select style="width: 100%;">
-			    <option value="🔻">🔻</option>
-                            <option value="Matemática">Matemática</option>
-                            <option value="Português">Português</option>
-                            <option value="História">História</option>
-                            <option value="Geografia">Geografia</option>
-                            <option value="Física">Física</option>
-                            <option value="Química">Química</option>
-                            <option value="Biologia">Biologia</option>
-                            <option value="Inglês">Inglês</option>
-                        </select>
-                    </td>
-                    <td><input type="text" pattern="[0-9]{3}" maxlength="3" placeholder="Ex: 101" style="width: 100%;"></td>
-                    <td>
-                        <select style="width: 100%;">
-			    <option value="🔻">🔻</option>
-                            <option value="Mat">Mat</option>
-                            <option value="Vesp">Vesp</option>
-                            <option value="Not">Not</option>
-                            <option value="Mag-Not">Mag-Not</option>
-                            <option value="Tec-Ves">Tec-Ves</option>
-                            <option value="Tec-Not">Tec-Not</option>
-                        </select>
-                    </td>
-                    <td><input type="text" max="9" min="1" placeholder="Ex: 1" maxlength="1" style="width: 100%;" oninput="updateTotalAulas()"></td>
-                    <td><button onclick="removeRowFromCell(this)" style="width: 100%;">Remover</button></td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -358,7 +305,13 @@
             // Coluna Disciplina
             const disciplinaCell = document.createElement("td");
             const disciplinaSelect = document.createElement("select");
-            const disciplinas = ["🔻", "Matemática", "Português", "História", "Geografia", "Física", "Química", "Biologia", "Inglês"];
+            const disciplinas = [
+    "🔻", 
+    "A docência como projeto de vida", 
+    "Administração", 
+    
+];
+
             disciplinas.forEach(disciplina => {
                 const option = document.createElement("option");
                 option.value = disciplina;
@@ -431,7 +384,6 @@
             document.getElementById("total-aulas").textContent = totalAulas;
         }
 
-    
         // Mostra uma mensagem ao enviar o formulário e processa a tabela
         function mostrarMensagem(event) {
             event.preventDefault();
