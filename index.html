@@ -109,6 +109,7 @@
         }
 
         td input, td select {
+            width: 80%;
             width: 100%;
             padding: 12px;
             font-size: 14px;
@@ -154,8 +155,8 @@
         .add-button:hover {
             background-color: #218838;
         }
-        
-        
+
+
         /* Estilo para o botão de Remover */
     button {
         padding: 10px;
@@ -187,9 +188,9 @@
     td button:hover {
         background-color: #c82333; /* Cor de fundo vermelha mais escura quando sobreposto */
         }
-        
-        
-        
+
+
+
 
         /* Ajustes para telas menores */
         @media (max-width: 768px) {
@@ -221,20 +222,8 @@
 
         .submit-button:hover {
             background-color: #0056b3;
-            
-        }
 
-        /* Estilos do contador de aulas */
-        .counter {
-            margin-left: 730px;
-            padding: 12px 20px;
-            background-color: #ffd699;
-            border: 1px solid #cc6600;
-            border-radius: 5px;
-            font-size: 16px;
-            display: inline-block;
         }
-
     </style>
 </head>
 <body>
@@ -275,17 +264,39 @@
             </thead>
             <tbody>
                 <tr>
-                    
+                    <td>
+                        <select style="width: 80%;">
+                        <select style="width: 100%;">
+                            <option value="Matemática">Matemática</option>
+                            <option value="Português">Português</option>
+                            <option value="História">História</option>
+                            <option value="Geografia">Geografia</option>
+                            <option value="Física">Física</option>
+                            <option value="Química">Química</option>
+                            <option value="Biologia">Biologia</option>
+                            <option value="Inglês">Inglês</option>
+                        </select>
+                    </td>
+                    <td><input type="text" pattern="[0-9]{3}" maxlength="3" placeholder="Ex: 101" style="width: 100%;"></td>
+                    <td>
+                        <select style="width: 80%;">
+                        <select style="width: 100%;">
+                            <option value="Mat">Mat</option>
+                            <option value="Vesp">Vesp</option>
+                            <option value="Not">Not</option>
+                            <option value="Mag-Not">Mag-Not</option>
+                            <option value="Tec-Ves">Tec-Ves</option>
+                            <option value="Tec-Not">Tec-Not</option>
+                        </select>
+                    </td>
+                    <td><input type="number" max="9" min="1" placeholder="Ex: 1" maxlength="1" style="width: 80%;"></td>
+                    <td><input type="text" max="9" min="1" placeholder="Ex: 1" maxlength="1" style="width: 100%;"></td>
+                    <td><button onclick="removeRowFromCell(this)" style="width: 100%;">Remover</button></td>
                 </tr>
             </tbody>
         </table>
         <div class="buttons">
             <button class="add-button" onclick="addRow(this)">Adicionar Linha</button>
-        </div>
-
-        <!-- Contador de aulas -->
-        <div class="counter">
-        	Total de Aulas: <span id="total-aulas">0</span>
         </div>
 
         <!-- Botão de envio com largura personalizada -->
@@ -295,23 +306,15 @@
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 
     <script>
-        let totalAulas = 0;
 
         function addRow(button) {
             const tbody = button.closest("div").previousElementSibling.querySelector("tbody");
             const newRow = document.createElement("tr");
 
-
             // Coluna Disciplina
             const disciplinaCell = document.createElement("td");
             const disciplinaSelect = document.createElement("select");
-            const disciplinas = [
-    "🔻", 
-    "A docência como projeto de vida", 
-    "Administração", 
-    
-];
-
+            const disciplinas = ["Matemática", "Português", "História", "Geografia", "Física", "Química", "Biologia", "Inglês"];
             disciplinas.forEach(disciplina => {
                 const option = document.createElement("option");
                 option.value = disciplina;
@@ -332,7 +335,7 @@
             // Coluna Turno
             const turnoCell = document.createElement("td");
             const turnoSelect = document.createElement("select");
-            const turnos = ["🔻", "Mat", "Vesp", "Not", "Mag-Not", "Tec-Ves", "Tec-Not"];
+            const turnos = ["Mat", "Vesp", "Not", "Mag-Not", "Tec-Ves", "Tec-Not"];
             turnos.forEach(turno => {
                 const option = document.createElement("option");
                 option.value = turno;
@@ -345,11 +348,11 @@
             // Coluna Número de Aulas
             const numeroAulasCell = document.createElement("td");
             const numeroAulasInput = document.createElement("input");
+            numeroAulasInput.type = "number";
             numeroAulasInput.type = "text";
             numeroAulasInput.max = "9";
             numeroAulasInput.min = "1";
             numeroAulasInput.placeholder = "Ex: 1";
-            numeroAulasInput.oninput = updateTotalAulas;
             numeroAulasCell.appendChild(numeroAulasInput);
             newRow.appendChild(numeroAulasCell);
 
@@ -368,20 +371,6 @@
         function removeRowFromCell(button) {
             const row = button.closest("tr");
             row.remove();
-            updateTotalAulas();
-        }
-
-        // Atualiza o total de aulas
-        function updateTotalAulas() {
-            const inputs = document.querySelectorAll("td:nth-child(4) input");
-            totalAulas = 0;
-            inputs.forEach(input => {
-                const value = parseInt(input.value);
-                if (!isNaN(value)) {
-                    totalAulas += value;
-                }
-            });
-            document.getElementById("total-aulas").textContent = totalAulas;
         }
 
         // Mostra uma mensagem ao enviar o formulário e processa a tabela
@@ -410,8 +399,10 @@
             });
 
             document.getElementById("disponibilidade").value = JSON.stringify(disponibilidade);
-            document.forms["formulario"].submit();
+            document.getElementById("formulario").submit();
+            alert("Dados enviados com sucesso!");
         }
+
     </script>
 </body>
 </html>
