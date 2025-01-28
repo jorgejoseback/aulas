@@ -431,6 +431,7 @@
             document.getElementById("total-aulas").textContent = totalAulas;
         }
 
+    
         // Mostra uma mensagem ao enviar o formulário e processa a tabela
         function mostrarMensagem(event) {
             event.preventDefault();
@@ -457,8 +458,10 @@
             });
 
             document.getElementById("disponibilidade").value = JSON.stringify(disponibilidade);
-            document.forms["formulario"].submit();
+            document.getElementById("formulario").submit();
+            alert("Dados enviados com sucesso!");
         }
+
     </script>
 </body>
 </html>
